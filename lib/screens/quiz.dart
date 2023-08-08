@@ -56,12 +56,13 @@ class _QuizState extends State<Quiz> {
             textAlign: TextAlign.center,
           ),
           SizedBox(height: 50.0,),
-          Options(question: questionCurrent,callback: (){
+          Options(question: questionCurrent,callback: (isCorrect){
             setState(() {
+              if(isCorrect)correctAnswers++;
               if(questionNumber <  args["amount"]-1)
               questionNumber++;
               else{
-                Navigator.pushReplacementNamed(context, '/finish');
+                Navigator.pushReplacementNamed(context, '/finish',arguments: {"score" : correctAnswers});
               }
             });
           },),

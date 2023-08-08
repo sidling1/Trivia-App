@@ -5,7 +5,7 @@ import 'package:trivia/components/buttoncard.dart';
 class Options extends StatelessWidget {
 
   final Question question;
-  final VoidCallback callback;
+  final Function(bool) callback;
   int correctAnswers = 0;
   Options({required this.question,required this.callback});
 
@@ -30,12 +30,11 @@ class Options extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: ButtonCard(text: data, callBack: (){
                     if(question.isCorrect(data)){
-                      print('Correct');
+                      callback(true);
 
                     }else{
-                      print('Incorrect');
+                      callback(false);
                     }
-                      callback();
                   }),
                 );
             }
